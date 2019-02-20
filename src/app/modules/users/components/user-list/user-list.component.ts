@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../../services/user.service';
+import {ActivatedRoute} from '@angular/router';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-list',
@@ -7,9 +8,9 @@ import {UserService} from '../../services/user.service';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  users$ = this.users.getList();
+  users$ = this.route.data.pipe(map(data => data.users));
 
-  constructor(private users: UserService) {
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit() {
