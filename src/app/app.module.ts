@@ -5,6 +5,8 @@ import {AppComponent} from './app.component';
 import {Route, RouterModule} from '@angular/router';
 import {UsersModule} from './modules/users/users.module';
 import {AppCommonModule} from './modules/app-common/app-common.module';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 const routes: Route[] = [{
   path: '',
@@ -18,6 +20,8 @@ const routes: Route[] = [{
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     AppCommonModule,
     UsersModule,
     RouterModule.forRoot(routes)
