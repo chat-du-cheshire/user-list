@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {map} from 'rxjs/operators';
 import {IColumn} from '../../../app-common/components/table/interfaces/IColumn';
 
@@ -25,14 +25,14 @@ export class UserListComponent implements OnInit {
 
   users$ = this.route.data.pipe(map(data => data.users));
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
   }
 
   onSelect(user) {
-    console.log(user);
+    this.router.navigate(['users', user.id]);
   }
 
 }
