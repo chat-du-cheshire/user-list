@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {map} from 'rxjs/operators';
-import {ActivatedRoute} from '@angular/router';
+import {Component, Input, OnInit} from '@angular/core';
+import {IUser} from '../../interfaces/IUser';
 
 @Component({
   selector: 'app-user-detail',
@@ -9,9 +8,9 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class UserDetailComponent implements OnInit {
 
-  user$ = this.route.data.pipe(map(data => data.user));
+  @Input() user: IUser;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit() {
   }

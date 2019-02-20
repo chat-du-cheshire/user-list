@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import {Router} from '@angular/router';
+import {StateService} from '@uirouter/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthUserService {
   isAdmin = true;
-  constructor(private router: Router) { }
+  constructor(private router: StateService) { }
 
   reset(isAdmin) {
     this.isAdmin = isAdmin;
     if (!isAdmin) {
-      this.router.navigate(['/']);
+      this.router.go('root');
     }
   }
 }

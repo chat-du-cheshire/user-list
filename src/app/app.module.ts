@@ -2,16 +2,16 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {Route, RouterModule} from '@angular/router';
 import {UsersModule} from './modules/users/users.module';
 import {AppCommonModule} from './modules/app-common/app-common.module';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {UIRouterModule} from '@uirouter/angular';
 
-const routes: Route[] = [{
-  path: '',
-  redirectTo: 'users',
-  pathMatch: 'full'
+const routes = [{
+  name: 'root',
+  url: '/',
+  redirectTo: 'users'
 }];
 
 @NgModule({
@@ -24,7 +24,7 @@ const routes: Route[] = [{
     ToastrModule.forRoot(),
     AppCommonModule,
     UsersModule,
-    RouterModule.forRoot(routes)
+    UIRouterModule.forRoot({states: routes})
   ],
   providers: [],
   bootstrap: [AppComponent]

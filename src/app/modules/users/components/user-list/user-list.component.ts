@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {map} from 'rxjs/operators';
+import {Component, Input, OnInit} from '@angular/core';
 import {IColumn} from '../../../app-common/components/table/interfaces/IColumn';
+import {IUser} from '../../interfaces/IUser';
+import {StateService} from '@uirouter/core';
 
 @Component({
   selector: 'app-user-list',
@@ -23,16 +23,16 @@ export class UserListComponent implements OnInit {
     property: 'email'
   }];
 
-  users$ = this.route.data.pipe(map(data => data.users));
+  @Input() users: IUser[];
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private router: StateService) {
   }
 
   ngOnInit() {
   }
 
   onSelect(user) {
-    this.router.navigate(['users', user.id]);
+    this.router.go('user', {id: user.id});
   }
 
 }
