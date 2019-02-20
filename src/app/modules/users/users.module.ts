@@ -4,6 +4,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import {Route, RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {UsersResolver} from './services/users.resolver';
+import {AppCommonModule} from '../app-common/app-common.module';
 
 const routes: Route[] = [{
   path: 'users',
@@ -18,6 +19,7 @@ const routes: Route[] = [{
   imports: [
     CommonModule,
     HttpClientModule,
+    AppCommonModule,
     RouterModule.forChild(routes)
   ]
 })
