@@ -1,0 +1,12 @@
+<table class="table table-dark table-hover">
+  <thead>
+  <tr>
+    <th *ngFor="let col of columns" scope="col">{{col.label}}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of items" (click)="click(item)">
+    <td *ngFor="let col of columns">{{item[col.property]}}</td>
+  </tr>
+  </tbody>
+</table>
