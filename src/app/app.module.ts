@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {Route, RouterModule} from '@angular/router';
 import {UsersModule} from './modules/users/users.module';
+import {AppCommonModule} from './modules/app-common/app-common.module';
 
 const routes: Route[] = [{
   path: '',
@@ -17,6 +18,7 @@ const routes: Route[] = [{
   ],
   imports: [
     BrowserModule,
+    AppCommonModule,
     UsersModule,
     RouterModule.forRoot(routes)
   ],
