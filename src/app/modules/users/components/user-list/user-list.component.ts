@@ -35,4 +35,9 @@ export class UserListComponent implements OnInit {
     this.router.go('users.user', {id: user.id});
   }
 
+  onEdit(user) {
+    this.router.go('users.user.edit', {id: user.id});
+  }
+
+
 }

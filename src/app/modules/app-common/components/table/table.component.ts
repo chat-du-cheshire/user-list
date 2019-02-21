@@ -11,6 +11,8 @@ export class TableComponent implements OnInit {
   @Input() columns: IColumn[];
   @Input() items: any[];
   @Output() select = new EventEmitter();
+  @Input() canEdit = false;
+  @Output() edit = new EventEmitter();
 
   constructor() { }
 
@@ -19,5 +21,10 @@ export class TableComponent implements OnInit {
 
   click(item) {
     this.select.emit(item);
+  }
+
+  onEdit(event, item) {
+    event.stopPropagation();
+    this.edit.emit(item);
   }
 }

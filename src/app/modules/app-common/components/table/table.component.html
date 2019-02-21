@@ -2,11 +2,15 @@
   <thead>
   <tr>
     <th *ngFor="let col of columns" scope="col">{{col.label}}</th>
+    <th *ngIf="canEdit">Edit</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let item of items" (click)="click(item)">
     <td *ngFor="let col of columns">{{item[col.property]}}</td>
+    <th *ngIf="canEdit">
+      <button class="btn btn-primary" (click)="onEdit($event, item)">Edit</button>
+    </th>
   </tr>
   </tbody>
 </table>

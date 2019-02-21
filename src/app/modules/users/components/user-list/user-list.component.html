@@ -2,4 +2,5 @@
   <h1 class="col-12 col-sm-6">User list</h1>
   <div class="col-12 col-sm-6"><a class="btn btn-primary text-light" uiSref="users.add">Add user</a></div>
 </div>
-<app-table [items]="users" [columns]="columns" (select)="onSelect($event)"></app-table>
+<app-table [items]="users" [canEdit]="true" [columns]="columns" (select)="onSelect($event)"
+           (edit)="onEdit($event)"></app-table>
