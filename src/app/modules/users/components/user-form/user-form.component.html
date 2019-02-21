@@ -1,0 +1,35 @@
+<form [formGroup]="formItem" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="firstName">First name:</label>
+    <input class="form-control" formControlName="firstName" id="firstName" placeholder="First name">
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last name:</label>
+    <input class="form-control" formControlName="lastName" id="lastName" placeholder="Last name">
+  </div>
+  <div class="form-group">
+    <label for="age">Age:</label>
+    <input type="number" class="form-control" formControlName="age" id="age" placeholder="Age">
+  </div>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input class="form-control" formControlName="email" id="email" placeholder="email@example.com">
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone:</label>
+    <input class="form-control" formControlName="phone" id="phone" placeholder="+1 (123) 456-67-89">
+  </div>
+  <div class="form-group">
+    <label for="address">Address:</label>
+    <input class="form-control" formControlName="address" id="address" placeholder="User address">
+  </div>
+  <div class="form-group">
+    <label for="company">Company:</label>
+    <input class="form-control" formControlName="company" id="company" placeholder="Company">
+  </div>
+  <div class="form-group">
+    <label for="address">About:</label>
+    <textarea class="form-control" formControlName="about" id="about" placeholder="Short story about..."></textarea>
+  </div>
+  <ng-content></ng-content>
+</form>
