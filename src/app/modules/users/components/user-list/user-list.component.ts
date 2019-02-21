@@ -32,7 +32,7 @@ export class UserListComponent implements OnInit {
   }
 
   onSelect(user) {
-    this.router.go('user', {id: user.id});
+    this.router.go('users.user', {id: user.id});
   }
 
 }

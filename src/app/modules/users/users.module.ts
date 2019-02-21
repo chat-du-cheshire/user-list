@@ -5,10 +5,13 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppCommonModule} from '../app-common/app-common.module';
 import {UserDetailComponent} from './components/user-detail/user-detail.component';
 import {UserCardComponent} from './components/user-card/user-card.component';
-import {UIRouterModule, UIRouter, Transition} from '@uirouter/angular';
+import {UIRouterModule, UIRouter, Transition, Ng2StateDeclaration} from '@uirouter/angular';
 import {UserService} from './services/user.service';
 import {AuthUserService} from '../app-common/services/auth-user.service';
 import {ToastrService} from 'ngx-toastr';
+import {ReactiveFormsModule} from '@angular/forms';
+import {UserFormComponent} from './components/user-form/user-form.component';
+import {UserAddComponent} from './components/user-add/user-add.component';
 
 function requireAuthentication(transition) {
   const $state = transition.router.stateService;
@@ -24,14 +27,25 @@ function requireAuthentication(transition) {
 }
 
 function uiRouterConfigFn(router: UIRouter) {
-  const criteria = { entering: (state) => state.protectMe };
+  const criteria = {entering: (state) => state.protectMe};
   router.transitionService.onBefore(criteria, requireAuthentication);
 }
 
-const routes = [{
+interface MyRoute extends Ng2StateDeclaration {
+  [key: string]: any;
+}
+
+const routes: MyRoute[] = [{
   name: 'users',
-  component: UserListComponent,
   url: '/users',
+  // component: UserListComponent,
+  $uiViewName: 'root',
+  $uiViewContextAnchor: 'root',
+  views: {
+    root: {
+      component: UserListComponent,
+    }
+  },
   resolve: [
     {
       token: 'users',
@@ -40,9 +54,14 @@ const routes = [{
     }
   ]
 }, {
-  name: 'user',
-  component: UserDetailComponent,
-  url: '/users/:id',
+  name: 'users.user',
+  url: '/:id',
+  // component: UserDetailComponent,
+  views: {
+    root: {
+      component: UserAddComponent,
+    }
+  },
   protectMe: true,
   resolve: [
     {
@@ -51,15 +70,26 @@ const routes = [{
       resolveFn: (trans: Transition, userSrv: UserService) => userSrv.get(trans.params().id).toPromise()
     }
   ]
+}, {
+  name: 'users.add',
+  url: '/add',
+  component: UserAddComponent,
+  views: {
+    root: {
+      component: UserAddComponent,
+    }
+  },
+  protectMe: true
 }];
 
 @NgModule({
-  declarations: [UserListComponent, UserDetailComponent, UserCardComponent],
+  declarations: [UserListComponent, UserDetailComponent, UserCardComponent, UserFormComponent, UserAddComponent],
   imports: [
     CommonModule,
     HttpClientModule,
+    ReactiveFormsModule,
     AppCommonModule,
-    UIRouterModule.forChild({states: routes, config: uiRouterConfigFn })
+    UIRouterModule.forChild({states: routes, config: uiRouterConfigFn})
   ]
 })
 export class UsersModule {

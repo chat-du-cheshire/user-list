@@ -18,4 +18,8 @@ export class UserService {
   get(id) {
     return this.http.get<IUser>(`${this.url}/${id}`);
   }
+
+  create(user: IUser) {
+    return this.http.post(this.url, user);
+  }
 }
