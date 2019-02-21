@@ -26,6 +26,7 @@ export class UserFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.formItem.patchValue(this.user);
   }
 
   onSubmit() {

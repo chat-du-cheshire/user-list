@@ -4,4 +4,9 @@
     <li class="breadcrumb-item active" aria-current="page">{{user.firstName}} {{user.lastName}}</li>
   </ol>
 </nav>
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link" uiSref=".edit" [uiParams]="{id: user.id}">Edit</a>
+  </li>
+</ul>
 <app-user-card [user]="user"></app-user-card>

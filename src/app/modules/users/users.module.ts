@@ -5,13 +5,14 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppCommonModule} from '../app-common/app-common.module';
 import {UserDetailComponent} from './components/user-detail/user-detail.component';
 import {UserCardComponent} from './components/user-card/user-card.component';
-import {UIRouterModule, UIRouter, Transition, Ng2StateDeclaration} from '@uirouter/angular';
+import {Ng2StateDeclaration, Transition, UIRouter, UIRouterModule} from '@uirouter/angular';
 import {UserService} from './services/user.service';
 import {AuthUserService} from '../app-common/services/auth-user.service';
 import {ToastrService} from 'ngx-toastr';
 import {ReactiveFormsModule} from '@angular/forms';
 import {UserFormComponent} from './components/user-form/user-form.component';
 import {UserAddComponent} from './components/user-add/user-add.component';
+import {UserEditComponent} from './components/user-edit/user-edit.component';
 
 function requireAuthentication(transition) {
   const $state = transition.router.stateService;
@@ -63,6 +64,16 @@ const routes: MyRoute[] = [{
     }
   ]
 }, {
+  name: 'users.user.edit',
+  url: '/edit',
+  views: {
+    '!$default': {
+      component: UserEditComponent,
+      bindings: {user: 'user'}
+    }
+  },
+  protectMe: true
+}, {
   name: 'users.add',
   url: '/add',
   component: UserAddComponent,
@@ -75,7 +86,7 @@ const routes: MyRoute[] = [{
 }];
 
 @NgModule({
-  declarations: [UserListComponent, UserDetailComponent, UserCardComponent, UserFormComponent, UserAddComponent],
+  declarations: [UserListComponent, UserDetailComponent, UserCardComponent, UserFormComponent, UserAddComponent, UserEditComponent],
   imports: [
     CommonModule,
     HttpClientModule,

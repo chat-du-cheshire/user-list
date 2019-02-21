@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from '../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
@@ -21,5 +21,9 @@ export class UserService {
 
   create(user: IUser) {
     return this.http.post(this.url, user);
+  }
+
+  update(user: IUser) {
+    return this.http.put(`${this.url}/${user.id}`, user);
   }
 }
