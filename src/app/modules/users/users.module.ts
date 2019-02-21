@@ -39,11 +39,6 @@ const routes: MyRoute[] = [{
   name: 'users',
   url: '/users',
   component: UserListComponent,
-  // views: {
-  //   root: {
-  //     component: UserListComponent,
-  //   }
-  // },
   resolve: [
     {
       token: 'users',
@@ -54,7 +49,6 @@ const routes: MyRoute[] = [{
 }, {
   name: 'users.user',
   url: '/:id',
-  // component: UserDetailComponent,
   views: {
     '!$default': {
       component: UserDetailComponent,
