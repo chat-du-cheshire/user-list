@@ -4,7 +4,9 @@ import {UserService} from '../../services/user.service';
 import {StateService} from '@uirouter/core';
 import {ToastrService} from 'ngx-toastr';
 import {tap} from 'rxjs/internal/operators/tap';
-import {first} from 'rxjs/operators';
+import {catchError, first, share} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {of} from 'rxjs/internal/observable/of';
 
 @Component({
   selector: 'app-user-add',
@@ -20,12 +22,13 @@ export class UserAddComponent implements OnInit {
 
   onSubmit(user: IUser) {
     this.users.create(user)
-      .pipe(tap(() => {
+      .pipe(
+        tap(() => {
           this.toastr.success('User created!');
-          this.router.go('/');
+          this.router.go('root');
         }, () => {
           this.toastr.error('Something went wrong! Please try later!');
-          this.router.go('/');
+          this.router.go('root');
         }),
         first())
       .subscribe();

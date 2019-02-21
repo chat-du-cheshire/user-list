@@ -38,14 +38,12 @@ interface MyRoute extends Ng2StateDeclaration {
 const routes: MyRoute[] = [{
   name: 'users',
   url: '/users',
-  // component: UserListComponent,
-  $uiViewName: 'root',
-  $uiViewContextAnchor: 'root',
-  views: {
-    root: {
-      component: UserListComponent,
-    }
-  },
+  component: UserListComponent,
+  // views: {
+  //   root: {
+  //     component: UserListComponent,
+  //   }
+  // },
   resolve: [
     {
       token: 'users',
@@ -58,8 +56,8 @@ const routes: MyRoute[] = [{
   url: '/:id',
   // component: UserDetailComponent,
   views: {
-    root: {
-      component: UserAddComponent,
+    '!$default': {
+      component: UserDetailComponent,
     }
   },
   protectMe: true,
@@ -75,7 +73,7 @@ const routes: MyRoute[] = [{
   url: '/add',
   component: UserAddComponent,
   views: {
-    root: {
+    '!$default': {
       component: UserAddComponent,
     }
   },

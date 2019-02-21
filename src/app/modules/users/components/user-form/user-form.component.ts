@@ -10,7 +10,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 export class UserFormComponent implements OnInit {
 
   @Input() user: IUser;
-  @Output() submit = new EventEmitter<IUser>();
+  @Output() formSubmit = new EventEmitter<IUser>();
 
   formItem = new FormGroup({
     age: new FormControl(''),
@@ -29,7 +29,7 @@ export class UserFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submit.emit(this.formItem.value);
+    this.formSubmit.emit(this.formItem.value);
   }
 
 }

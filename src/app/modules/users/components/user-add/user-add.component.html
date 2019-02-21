@@ -1,3 +1,9 @@
-<app-user-form (submit)="onSubmit($event)">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a uiSref="users">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Add user</li>
+  </ol>
+</nav>
+<app-user-form (formSubmit)="onSubmit($event)">
   <button class="btn btn-primary">Create</button>
 </app-user-form>
