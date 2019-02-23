@@ -26,4 +26,8 @@ export class UserService {
   update(user: IUser) {
     return this.storage.update(this.entity, user);
   }
+
+  delete(user: IUser) {
+    return this.storage.remove(this.entity, user);
+  }
 }

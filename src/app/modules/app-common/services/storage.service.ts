@@ -92,7 +92,7 @@ export class StorageService {
       return of(null);
     }
 
-    const afterRemove = remove(this.storage[item], item, compareFn || defaultCompareFn);
+    const afterRemove = remove(this.storage[entity], item, compareFn || defaultCompareFn);
 
     if (!afterRemove.length) {
       delete this.storage[entity];

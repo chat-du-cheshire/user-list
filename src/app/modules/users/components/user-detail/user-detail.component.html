@@ -8,5 +8,8 @@
   <li class="nav-item">
     <a class="nav-link" uiSref="users.edit" [uiParams]="{id: user.id}">Edit</a>
   </li>
+  <li class="nav-item">
+    <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+  </li>
 </ul>
 <app-user-card [user]="user"></app-user-card>
