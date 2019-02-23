@@ -23,10 +23,13 @@ export class UserFormComponent implements OnInit {
     about: new FormControl(''),
   });
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
-    this.formItem.patchValue(this.user);
+    if (this.user) {
+      this.formItem.patchValue(this.user);
+    }
   }
 
   onSubmit() {

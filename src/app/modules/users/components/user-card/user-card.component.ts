@@ -7,6 +7,7 @@ import {IUser} from '../../interfaces/IUser';
   styleUrls: ['./user-card.component.scss']
 })
 export class UserCardComponent implements OnInit {
+  defaultImg = 'https://picsum.photos/500';
   @Input() user: IUser;
   constructor() { }
 

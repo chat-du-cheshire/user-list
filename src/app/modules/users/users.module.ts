@@ -65,15 +65,21 @@ const routes: MyRoute[] = [{
     }
   ]
 }, {
-  name: 'users.user.edit',
-  url: '/edit',
+  name: 'users.edit',
+  url: '/:id/edit',
   views: {
     '!$default': {
-      component: UserEditComponent,
-      bindings: {user: 'user'}
+      component: UserEditComponent
     }
   },
-  protectMe: true
+  protectMe: true,
+  resolve: [
+    {
+      token: 'user',
+      deps: [Transition, UserService],
+      resolveFn: (trans: Transition, userSrv: UserService) => userSrv.get(trans.params().id).toPromise()
+    }
+  ]
 }, {
   name: 'users.add',
   url: '/add',

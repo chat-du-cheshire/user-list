@@ -25,8 +25,18 @@ const remove = (array: any[], item: any, searchFn: comparator): any[] => {
   return array;
 };
 
+const getStorageIDs = (storage: IStorage) => Object.keys(storage)
+  .reduce((acc, item) => {
+    acc[item] = Math.max(...storage[item].map(storageItem => storageItem.id)) + 1;
+    return acc;
+  }, {});
+
 interface IStorage {
   [key: string]: any[];
+}
+
+interface IStorageID {
+  [key: string]: number;
 }
 
 @Injectable({
@@ -34,8 +44,9 @@ interface IStorage {
 })
 export class StorageService {
   private storage: IStorage = JSON.parse(localStorage.getItem('storage')) || {};
+  private storageID: IStorageID = getStorageIDs(this.storage);
 
-  getEntity(entity: string): Observable<any> {
+  getAll(entity: string): Observable<any> {
     return of(this.storage[entity] || null);
   }
 
@@ -51,8 +62,11 @@ export class StorageService {
 
   set(entity: string, item: any): Observable<any> {
     if (this.storage[entity]) {
+      item.id = this.storageID[entity]++;
       this.storage[entity].push(item);
     } else {
+      this.storageID[entity] = 1;
+      item.id = this.storageID[entity]++;
       this.storage[entity] = [item];
     }
 
