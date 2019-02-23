@@ -40,7 +40,15 @@ interface MyRoute extends Ng2StateDeclaration {
 const routes: MyRoute[] = [{
   name: 'users',
   url: '/users',
-  component: UserListComponent,
+  redirectTo: 'users.list'
+}, {
+  name: 'users.list',
+  url: '',
+  views: {
+    '!$default': {
+      component: UserListComponent,
+    }
+  },
   resolve: [
     {
       token: 'users',
