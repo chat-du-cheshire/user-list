@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {AuthUserService} from './modules/app-common/services/auth-user.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +7,6 @@ import {AuthUserService} from './modules/app-common/services/auth-user.service';
 })
 export class AppComponent {
   title = 'UserList';
-  constructor(public authUser: AuthUserService) {
+  constructor() {
   }
 }
