@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IUser} from '../interfaces/IUser';
 import {StorageService} from '../../app-common/services/storage.service';
@@ -9,7 +8,9 @@ import {StorageService} from '../../app-common/services/storage.service';
 })
 export class UserService {
   private entity = `user`;
-  constructor(private http: HttpClient, private storage: StorageService) { }
+
+  constructor(private storage: StorageService) {
+  }
 
   getList(): Observable<IUser[]> {
     return this.storage.getAll(this.entity);

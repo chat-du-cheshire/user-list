@@ -8,8 +8,11 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Api server
 
-Run `npm run apu` for a api server. Api hosts on `http://localhost:3000/`. It has been realized on [json-server](https://github.com/typicode/json-server).
+Run `npm run api` for a api server. Api hosts on `http://localhost:3000/`. It has been realized on [json-server](https://github.com/typicode/json-server).
 
+## Generate documentation
+
+Run `npm run doc` for a generate docs. To serve docs `npm run doc:serve`. Doc hosts on `http://localhost:8080/`. It has been realized with [compodoc](https://github.com/compodoc/compodoc).
 
 ## Code scaffolding
 
